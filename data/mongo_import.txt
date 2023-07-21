@@ -1,0 +1,1 @@
+$ mongoimport --uri=mongodb://<host>:<port>?authSource=admin --file=/path/to/listings.json -d=paf -c=listings --type=json

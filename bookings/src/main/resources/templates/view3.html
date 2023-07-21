@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div>
+    <a href="#" onclick="history.back()">Back</a>
+</div>
+<div data-th-object="${listing}">
+    <table>
+        <tr>
+            <th>Id:</th>
+            <td data-th-text="*{id}"></td>
+        </tr>
+        <tr>
+            <th>Description:</th>
+            <td>
+                <p data-th-text="*{description}"></p>
+                <img data-th-src="@{{image}(image=*{image})}" alt="img" height="150px" width="150px">
+            </td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td>
+                <p data-th-text="*{addressStreet}"></p>
+                <p data-th-text="*{addressSuburb}"></p>
+                <p data-th-text="*{addressCountry}"></p>
+            </td>
+        </tr>
+        <tr>
+            <th>Price:</th>
+            <td data-th-text="*{price}"></td>
+        </tr>
+        <tr>
+            <th>Amenities:</th>
+            <td>
+                <span data-th-each="a: *{amenities}" data-th-text="${a + ', '}"></span>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h2>Bookings</h2>
+    <form data-th-action="@{/listing/{id}/booking(id=${listing.id})}" method="POST" data-th-object="${reservation}">
+        <div data-th-if="${errorMessage != null}">
+            <p data-th-text="${errorMessage}" style="color: red;"></p>
+        </div>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" data-th-field="*{name}">
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" data-th-field="*{email}">
+        </div>
+        <div>
+            <label for="arrivalDate">Arrival:</label>
+            <input type="date" name="arrivalDate" id="arrivalDate" data-th-field="*{arrivalDate}">
+        </div>
+        <div>
+            <label for="duration">Stay:</label>
+            <input type="text" name="duration" id="duration" data-th-field="*{duration}"> days
+        </div>
+        <div>
+            <button type="submit">Book</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Search Our Accommodations</h1>
+<form data-th-action="@{/search}" method="GET">
+    <div data-th-if="${errorMessages != null && errorMessages.size() > 0}">
+        <p data-th-each="errorMessage: ${errorMessages}" data-th-text="${errorMessage}" style="color: red;"></p>
+    </div>
+    <div>
+        <label for="country">Country:</label>
+        <select name="country" id="country">
+            <option data-th-each="country: ${countries}" data-th-text="${country}" data-th-value="${country}"></option>
+        </select>
+    </div>
+    <div>
+        <label for="pax">Number of people:</label>
+        <input type="number" name="pax" id="pax" min="1" max="10" value="1">
+    </div>
+    <div>
+        <label for="price">Price Range:</label>
+        <div id="price">
+            <label for="priceMin">Min</label>
+            <input type="number" name="priceMin" id="priceMin" step="0.1" min="1" max="10000" value="1.0">
+            <label for="priceMax">Max</label>
+            <input type="number" name="priceMax" id="priceMax" step="0.1" min="1" max="10000" value="1.0">
+        </div>
+    </div>
+    <div>
+        <button type="submit">Search</button>
+    </div>
+</form>
+</body>
+</html>
