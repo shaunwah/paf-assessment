@@ -19,7 +19,6 @@ public class ListingsService {
         return repo.getCountries();
     }
 	
-	//TODO: Task 2
     public List<Listing> getListingsByCountry(String country, Integer accommodates, Double priceMin, Double priceMax) {
         return repo.getListingsByCountry(country, accommodates, priceMin, priceMax)
                 .stream()
@@ -27,7 +26,6 @@ public class ListingsService {
                 .toList();
     }
 	
-	//TODO: Task 3
     public Optional<Listing> getListingById(String id) {
         Document doc = repo.getListingById(id);
         if (doc == null) {
@@ -35,11 +33,4 @@ public class ListingsService {
         }
         return Optional.of(Utilities.toListingObj(doc));
     }
-
-	//TODO: Task 4
-	
-
-	//TODO: Task 5
-
-
 }

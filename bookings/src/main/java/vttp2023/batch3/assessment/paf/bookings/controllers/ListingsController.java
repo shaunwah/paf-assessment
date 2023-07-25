@@ -3,7 +3,6 @@ package vttp2023.batch3.assessment.paf.bookings.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vttp2023.batch3.assessment.paf.bookings.models.Listing;
@@ -33,8 +32,6 @@ public class ListingsController {
         return mav;
     }
 
-	//TODO: Task 2
-
     @GetMapping("/search")
     public ModelAndView getSearchResults(@RequestParam String country,
                                          @RequestParam Integer pax,
@@ -56,7 +53,6 @@ public class ListingsController {
         return mav;
     }
 	
-	//TODO: Task 3
     @GetMapping("/listing/{id}")
     public ModelAndView getListingById(@PathVariable String id) {
         Optional<Listing> listing = listingsSvc.getListingById(id);
@@ -72,7 +68,6 @@ public class ListingsController {
         return mav;
     }
 
-	//TODO: Task 4
     @PostMapping("/listing/{id}/booking")
     public ModelAndView createBooking(@PathVariable String id, @ModelAttribute Reservation reservation) {
         ModelAndView mav = new ModelAndView();
@@ -91,9 +86,4 @@ public class ListingsController {
             return mav;
         }
     }
-	
-
-	//TODO: Task 5
-
-
 }

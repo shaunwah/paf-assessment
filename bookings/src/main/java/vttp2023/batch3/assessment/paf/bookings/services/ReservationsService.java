@@ -19,7 +19,7 @@ public class ReservationsService {
     @Autowired
     private OccupanciesRepository occupanciesRepo;
 
-    @Transactional
+    @Transactional(rollbackFor = SQLException.class)
     public Reservation createReservation(Reservation reservation, String accId) throws SQLException {
         Optional<Occupancy> occupancy = getOccupancyById(accId);
         if (occupancy.isEmpty()) {
@@ -30,7 +30,6 @@ public class ReservationsService {
             throw new SQLException("This accommodation is only available for booking for up to %d day(s).".formatted(occupancy.get().getVacancy()));
         }
 
-        reservation.setResvId(Utilities.generateId(8));
         if (!insertReservation(reservation)) {
             throw new SQLException("An issue occurred while creating a new booking.");
         }

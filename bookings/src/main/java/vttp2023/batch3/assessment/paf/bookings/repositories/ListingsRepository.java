@@ -21,9 +21,6 @@ public class ListingsRepository {
         return mongoTemplate.findDistinct(new Query(), Constants.A_ADDRESS_COUNTRY, Constants.C_LISTINGS, String.class);
     }
 
-	//TODO: Task 2
-
-
     // db.listings.find(
     // {
     //    "address.country": { $regex: <country>, $options: "i" },
@@ -50,7 +47,6 @@ public class ListingsRepository {
         );
     }
 	
-	//TODO: Task 3
     // db.listings.findOne(
     //    { _id: <id> }
     // )
@@ -61,12 +57,4 @@ public class ListingsRepository {
                 Constants.C_LISTINGS
         );
     }
-
-
-	//TODO: Task 4
-	// done in ReservationsRepository
-
-	//TODO: Task 5
-    // done in ReservationsRepository
-
 }
