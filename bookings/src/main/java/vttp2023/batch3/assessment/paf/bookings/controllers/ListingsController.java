@@ -60,6 +60,7 @@ public class ListingsController {
         if (listing.isEmpty()) {
             mav.setViewName("view3");
             mav.setStatus(HttpStatus.NOT_FOUND);
+            mav.addObject("listing", new Listing());
         }
         mav.setViewName("view3");
         mav.setStatus(HttpStatus.OK);
